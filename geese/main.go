@@ -10,27 +10,56 @@ The geese are any strings in the following array, which is prepopulated in your 
 import "fmt"
 
 func main() {
-	geesemain := Birds{"African", "Roman Tufted", "Toulouse", "Pilgrim", "Steinbacher"}
-	allbirdsmain := Birds{"Mallard", "Hook Bill", "African", "Crested", "Pilgrim", "Toulouse", "Blue Swedish"}
-
-	fmt.Println(Ungeeser(allbirdsmain))
+	var geese Birds = Birds{"African", "Roman Tufted", "Toulouse", "Pilgrim", "Steinbacher"}
+	var allbirds Birds = Birds{"Mallard", "Hook Bill", "African", "Crested", "Pilgrim", "Toulouse", "Blue Swedish"}
+	fmt.Println(Ungeeser(allbirds, geese))
 }
 
 type Birds []string
 
-var geese Birds
-var allbirds Birds
-var nogeese Birds
+func Ungeeser(allbirds, geese Birds) Birds {
+	// var nogeese Birds = Birds{}
+	nogeese := Birds{}
 
-func Ungeeser(Birds) Birds {
-	nogeese = Birds{}
-	for _, n := range allbirds {
-		for _, b := range geese {
-			if n != b {
-				nogeese = append(nogeese, allbirds[0])
+	// A
+	// -> C
+	// --> A != C
+	// ---> nogeese append A
+	// -> D
+	// --> A != D
+	// ---> nogeese append A
+	// -> E
+	// --> A != E
+	// ---> nogeese append A
+	// -> F
+	// --> A != F
+	// ---> nogeese append A
+	// B
+	// -> C
+	// --> B != C
+	// ---> nogeese append B
+	// -> D
+	// --> B != D
+	// ---> nogeese append B
+	// -> E
+	// --> B != E
+	// ---> nogeese append B
+	// -> F
+	// --> B != F
+	// ---> nogeese append B
+	for _, currentBirdName := range allbirds {
+
+		var found bool // = false
+		for _, notAllowedBirdName := range geese {
+			if currentBirdName == notAllowedBirdName {
+				found = true
 			}
-
 		}
+
+		if !found {
+			nogeese = append(nogeese, currentBirdName)
+		}
+
 	}
 	return nogeese
 }
