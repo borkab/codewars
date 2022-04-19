@@ -63,3 +63,17 @@ func Ungeeser(allbirds, geese Birds) Birds {
 	}
 	return nogeese
 }
+
+func SliceFilter(list, remove []string) []string {
+	// var result Birds = Birds{}
+	result := []string{}
+	notAllowed := make(map[string]struct{})
+	for _, n := range remove {
+		notAllowed[n] = struct{}{}
+	}
+
+	// solve it with Map
+	// _, hasValue := mapValue[key]
+
+	return result
+}
